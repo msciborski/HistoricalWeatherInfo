@@ -55,29 +55,28 @@ namespace HistoricalWeatherInfo.Scraper.Impl
 
             if (rowWithMeteoDataZip != null)
             {
-                //TODO: Move getting anchor and date to separate method
-                var anchorElement = rowWithMeteoDataZip
-                    .Children?
-                    .FirstOrDefault(c => Regex.IsMatch(c.TextContent, _zipRegex))?
-                    .FirstElementChild;
+                var anchorNode = GetChildAnchorNode(rowWithMeteoDataZip, _zipRegex);
+                var dateNode = GetChildAnchorNode(rowWithMeteoDataZip, _dateRegex);
 
-                var dateElement =
-                    rowWithMeteoDataZip
-                        .Children?
-                        .FirstOrDefault(c => Regex.IsMatch(c.TextContent, _dateRegex))?
-                        .FirstChild;
-
-                if (anchorElement != null && dateElement != null)
+                if (anchorNode != null && dateNode != null)
                 {
                     var meteoDataFileUrl = new MeteoDataFileUrl();
-                    meteoDataFileUrl.Url = $"{anchorElement.BaseUri}{anchorElement.Attributes["href"].Value}";
-                    meteoDataFileUrl.ModfiedAt = DateTime.Parse(dateElement.TextContent);
+                    meteoDataFileUrl.Url = $"{anchorNode.BaseUri}{anchorNode.TextContent}";
+                    meteoDataFileUrl.ModfiedAt = DateTime.Parse(dateNode.TextContent);
 
                     return meteoDataFileUrl;
                 }
             }
 
             return null;
+        }
+
+        private INode GetChildAnchorNode(IElement parent, string regexPattern)
+        {
+            return parent
+                .Children?
+                .FirstOrDefault(c => Regex.IsMatch(c.TextContent, regexPattern))?
+                .FirstChild;
         }
         
         private IEnumerable<IElement> GetRowsWithMeteoData(IDocument root, string patternForChilds)
@@ -108,16 +107,14 @@ namespace HistoricalWeatherInfo.Scraper.Impl
             rows.Aggregate(meteoDataDirectories,
                 (list, element) =>
                 {
-                    var anchorElement =
-                        element.Children.FirstOrDefault(c => Regex.IsMatch(c.TextContent, _folderNameRegexTemplate))?.FirstElementChild;
-                    var dateElement =
-                        element.Children.FirstOrDefault(c => Regex.IsMatch(c.TextContent, _dateRegex))?.FirstChild;
+                    var anchorNode = GetChildAnchorNode(element, _folderNameRegexTemplate);
+                    var dateNode = GetChildAnchorNode(element, _dateRegex);
 
-                    if (anchorElement != null && dateElement != null)
+                        if (anchorNode != null && dateNode != null)
                     {
                         var meteoDataFileDirectory = new MeteoDataFileDirectory();
-                        meteoDataFileDirectory.DirectoryUrl = $"{anchorElement.BaseUri}{anchorElement.Attributes["href"].Value}";
-                        meteoDataFileDirectory.ModifyDate = DateTime.Parse(dateElement.TextContent);
+                        meteoDataFileDirectory.DirectoryUrl = $"{anchorNode.BaseUri}{anchorNode.TextContent}";
+                        meteoDataFileDirectory.ModifyDate = DateTime.Parse(dateNode.TextContent);
                         
                         list.Add(meteoDataFileDirectory);
                     }
