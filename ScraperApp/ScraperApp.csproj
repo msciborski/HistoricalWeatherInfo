@@ -16,6 +16,7 @@
       <ProjectReference Include="..\Downloader\Downloader.csproj" />
       <ProjectReference Include="..\Parser\Parser.csproj" />
       <ProjectReference Include="..\Scraper\Scraper.csproj" />
+      <ProjectReference Include="..\WeatherInfo\WeatherInfo.csproj" />
     </ItemGroup>
 
 </Project>

@@ -33,7 +33,7 @@ namespace ScraperApp
         private static void RegisterServices()
         {
             _collection = new ServiceCollection();
-            _collection.AddHttpClient<IDownloader, MeteoDataDownloader>();
+            _collection.AddHttpClient<IDownloader, ImgwMeteoDataDownloader>();
             _serviceProvider = AddAutoFac();
         }
 
