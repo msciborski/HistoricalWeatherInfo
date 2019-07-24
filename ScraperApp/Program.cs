@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using Downloader;
+using Downloader.Impl;
+using Downloader.Interfaces;
 using HistoricalWeatherInfo.Scraper;
 using HistoricalWeatherInfo.Scraper.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
@@ -19,9 +22,10 @@ namespace ScraperApp
             Console.WriteLine("Hello World!");
             
             RegisterServices();
-            var meteoFilesScraper = _serviceProvider.GetService<IMeteoFilesScraper>();
-
-            var meteoDataFileUrls = await meteoFilesScraper.GetAllMeteoDataFileUrlsAsync();
+            var downloader = _serviceProvider.GetService<IDownloader>();
+            await downloader.DownloadAndSaveFile(
+                "https://dane.imgw.pl/data/dane_pomiarowo_obserwacyjne/dane_meteorologiczne/miesieczne/klimat/1951_1955/1951_1955_m_k.zip",
+                @"C:\Users\Michal\Documents\meteo\data.zip");
             
             DisposeServices();
         }
@@ -29,6 +33,7 @@ namespace ScraperApp
         private static void RegisterServices()
         {
             _collection = new ServiceCollection();
+            _collection.AddHttpClient<IDownloader, MeteoDataDownloader>();
             _serviceProvider = AddAutoFac();
         }
 
@@ -54,6 +59,7 @@ namespace ScraperApp
         private static IEnumerable<Module> GetModules()
         {
             yield return new ScraperModule();
+            yield return new DownladerModule();
         }
 
         private static void DisposeServices()
