@@ -6,6 +6,7 @@ using Autofac.Extensions.DependencyInjection;
 using Downloader;
 using Downloader.Impl;
 using Downloader.Interfaces;
+using HistoricalWeatherInfo.Parser;
 using HistoricalWeatherInfo.Scraper;
 using HistoricalWeatherInfo.Scraper.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
@@ -60,6 +61,7 @@ namespace ScraperApp
         {
             yield return new ScraperModule();
             yield return new DownladerModule();
+            yield return new ParserModule();
         }
 
         private static void DisposeServices()

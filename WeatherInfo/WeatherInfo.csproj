@@ -5,13 +5,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Folder Include="Impl" />
       <Folder Include="Interfaces" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\Downloader\Downloader.csproj" />
-      <ProjectReference Include="..\Parser\Parser.csproj" />
-      <ProjectReference Include="..\Scraper\Scraper.csproj" />
     </ItemGroup>
 
     <ItemGroup>
