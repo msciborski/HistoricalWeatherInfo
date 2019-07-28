@@ -60,9 +60,10 @@ namespace HistoricalWeatherInfo.Scraper.Impl
 
                 if (anchorNode != null && dateNode != null)
                 {
-                    var meteoDataFileUrl = new MeteoDataFileUrl();
-                    meteoDataFileUrl.Url = $"{anchorNode.BaseUri}{anchorNode.TextContent}";
-                    meteoDataFileUrl.ModfiedAt = DateTime.Parse(dateNode.TextContent);
+                    var meteoDataFileUrl = new MeteoDataFileUrl(
+                        anchorNode.TextContent, 
+                        $"{anchorNode.BaseUri}{anchorNode.TextContent}", 
+                        DateTime.Parse(dateNode.TextContent));
 
                     return meteoDataFileUrl;
                 }
