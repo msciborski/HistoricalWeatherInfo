@@ -22,7 +22,8 @@ namespace HistoricalWeatherInfo.Scraper.Impl
             if (foundBrowsingContext == null)
             {
                 var newBrowsingContext = _browsingContext.CreateChild(url, Sandboxes.None);
-                return await newBrowsingContext.OpenAsync(url);
+                var openedDocument = await newBrowsingContext.OpenAsync(url);
+                return openedDocument;
             }
 
             return await foundBrowsingContext.OpenAsync(url);
