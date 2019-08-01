@@ -6,7 +6,7 @@ using WeatherInfo.Models;
 
 namespace HistoricalWeatherInfo.Parser.Impl
 {
-    public class ClimateMeteoDataParserMapping : CsvMapping<ClimateMeteoData>
+    public class ClimateMeteoDataParserMapping : CsvMapping<ImgwClimateMeteoData>
     {
         public ClimateMeteoDataParserMapping()
         {

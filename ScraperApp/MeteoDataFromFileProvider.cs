@@ -16,17 +16,17 @@ namespace ScraperApp
     {
         private readonly IMeteoFilesScraper _scraper;
         private readonly IDownloader _downloader;
-        private readonly IMeteoDataParser<ClimateMeteoData> _parser;
+        private readonly IMeteoDataParser<ImgwClimateMeteoData> _parser;
 
-        public MeteoDataFromFileProvider(IMeteoFilesScraper scraper, IDownloader downloader, IMeteoDataParser<ClimateMeteoData> parser)
+        public MeteoDataFromFileProvider(IMeteoFilesScraper scraper, IDownloader downloader, IMeteoDataParser<ImgwClimateMeteoData> parser)
         {
             _scraper = scraper;
             _downloader = downloader;
             _parser = parser;
         }
-        public async Task<IEnumerable<ClimateMeteoData>> GetClimateMeteoData()
+        public async Task<IEnumerable<ImgwClimateMeteoData>> GetClimateMeteoData()
         {
-            var climateMeteoDataList = new List<ClimateMeteoData>();
+            var climateMeteoDataList = new List<ImgwClimateMeteoData>();
             var meteoDataFileUrls = await _scraper.GetAllMeteoDataFileUrlsAsync();
             foreach (var meteoDataFileUrl in meteoDataFileUrls)
             {
@@ -37,14 +37,14 @@ namespace ScraperApp
             return climateMeteoDataList;
         }
 
-        private IEnumerable<ClimateMeteoData> GetClimateMeteoDataFromStream(Stream file)
+        private IEnumerable<ImgwClimateMeteoData> GetClimateMeteoDataFromStream(Stream file)
         {
             return _parser.GetMeteoData(file);
         }
 
-        private async Task<IEnumerable<ClimateMeteoData>> GetClimateMeteoDataFromFiles(string url, string fileNamePattern)
+        private async Task<IEnumerable<ImgwClimateMeteoData>> GetClimateMeteoDataFromFiles(string url, string fileNamePattern)
         {
-            var climateMeteoDataList = new List<ClimateMeteoData>();
+            var climateMeteoDataList = new List<ImgwClimateMeteoData>();
             var zipedFiles = await _downloader.DownloadFile(url);
             using (var zip = new ZipArchive(zipedFiles, ZipArchiveMode.Read))
             {

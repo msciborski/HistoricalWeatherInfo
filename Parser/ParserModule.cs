@@ -13,10 +13,10 @@ namespace HistoricalWeatherInfo.Parser
                 {
                     var options = new CsvParserOptions(true, ',');
 
-                    return new ImgwMeteoDataParser(new CsvParser<ClimateMeteoData>(options,
+                    return new ImgwMeteoDataParser(new CsvParser<ImgwClimateMeteoData>(options,
                         new ClimateMeteoDataParserMapping()));
                 })
-                .As<IMeteoDataParser<ClimateMeteoData>>();
+                .As<IMeteoDataParser<ImgwClimateMeteoData>>();
             
             base.Load(builder);
         }

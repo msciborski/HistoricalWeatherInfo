@@ -8,16 +8,16 @@ using WeatherInfo.Models;
 
 namespace HistoricalWeatherInfo.Parser.Impl
 {
-    public class ImgwMeteoDataParser : IMeteoDataParser<ClimateMeteoData>
+    public class ImgwMeteoDataParser : IMeteoDataParser<ImgwClimateMeteoData>
     {
-        private readonly ICsvParser<ClimateMeteoData> _csvParser;
+        private readonly ICsvParser<ImgwClimateMeteoData> _csvParser;
 
-        public ImgwMeteoDataParser(ICsvParser<ClimateMeteoData> csvParser)
+        public ImgwMeteoDataParser(ICsvParser<ImgwClimateMeteoData> csvParser)
         {
             _csvParser = csvParser;
         }
         
-        public IEnumerable<ClimateMeteoData> GetMeteoData(string path)
+        public IEnumerable<ImgwClimateMeteoData> GetMeteoData(string path)
         {
             using (var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read))
             {
@@ -27,7 +27,7 @@ namespace HistoricalWeatherInfo.Parser.Impl
             return null;
         }
         
-        public IEnumerable<ClimateMeteoData> GetMeteoData(Stream stream)
+        public IEnumerable<ImgwClimateMeteoData> GetMeteoData(Stream stream)
         {
             return _csvParser.Parse(stream).Select(c => c.Result);
         }

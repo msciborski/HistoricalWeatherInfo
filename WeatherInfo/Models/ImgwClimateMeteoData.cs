@@ -2,7 +2,7 @@ using System;
 
 namespace WeatherInfo.Models
 {
-    public class ClimateMeteoData
+    public class ImgwClimateMeteoData
     {
         public string StationCode { get; set; }
         public string StationName { get; set; }

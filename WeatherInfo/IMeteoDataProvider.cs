@@ -6,6 +6,6 @@ namespace WeatherInfo
 {
     public interface IMeteoDataProvider
     {
-        Task<IEnumerable<ClimateMeteoData>> GetClimateMeteoData();
+        Task<IEnumerable<ImgwClimateMeteoData>> GetClimateMeteoData();
     }
 }
