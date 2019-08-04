@@ -1,18 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
+using DataAccess;
+using DataAccess.Options;
 using Downloader;
 using Downloader.Impl;
 using Downloader.Interfaces;
 using FileService;
 using HistoricalWeatherInfo.Parser;
 using HistoricalWeatherInfo.Scraper;
-using HistoricalWeatherInfo.Scraper.Interfaces;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WeatherInfo;
-using WeatherInfo.Models;
+using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace ScraperApp
 {
@@ -20,23 +23,15 @@ namespace ScraperApp
     {
         private static IServiceCollection _collection;
         private static IServiceProvider _serviceProvider;
-        
+        private static IConfiguration _configuration;
+
         private static async Task Main(string[] args)
         {
             Console.WriteLine("Hello World!");
             
+            AddAppSettings();
             RegisterServices();
-            var meteoDataProvider = _serviceProvider.GetService<IMeteoDataProvider>();
-            try
-            {
-                var x = await meteoDataProvider.GetClimateMeteoData();
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;        
-            }
-            
+            await _serviceProvider.GetService<App>().Run();
 
             DisposeServices();
         }
@@ -44,7 +39,10 @@ namespace ScraperApp
         private static void RegisterServices()
         {
             _collection = new ServiceCollection();
+
             _collection.AddHttpClient<IDownloader, ImgwMeteoDataDownloader>();
+            _collection.AddOptions();
+            _collection.Configure<MongoDbSettings>(_configuration.GetSection(nameof(MongoDbSettings)));
             _serviceProvider = AddAutoFac();
         }
 
@@ -54,7 +52,9 @@ namespace ScraperApp
 
             builder.RegisterType<MeteoDataFromFileProvider>()
                 .As<IMeteoDataProvider>();
-            
+            builder.RegisterType<App>()
+                .AsSelf();
+
             RegisterModules(builder);
             
             builder.Populate(_collection);
@@ -71,12 +71,24 @@ namespace ScraperApp
             }
         }
 
+        private static void AddAppSettings()
+        {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json")
+                .AddEnvironmentVariables();
+            _configuration = builder.Build();
+
+        }
+
         private static IEnumerable<Module> GetModules()
         {
             yield return new ScraperModule();
             yield return new DownladerModule();
             yield return new ParserModule();
             yield return new FileServiceModule();
+            yield return new DataAccessModule();
+            
         }
 
         private static void DisposeServices()

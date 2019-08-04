@@ -1,9 +1,10 @@
 using DataAccess.Repository;
+using DataAccess.Repository.Interfaces;
 
 namespace DataAccess.Interfaces
 {
     public interface IUnitOfWork
     {
-        ImgwClimateMeteDataRepository ImgwClimateMeteDataRepository { get; set; }
+        IImgwClimateMeteoDataRepository ImgwClimateMeteDataRepository { get; set; }
     }
 }

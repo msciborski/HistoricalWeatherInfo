@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using AngleSharp;
 using AngleSharp.Browser;
@@ -22,6 +23,7 @@ namespace HistoricalWeatherInfo.Scraper.Impl
             if (foundBrowsingContext == null)
             {
                 var newBrowsingContext = _browsingContext.CreateChild(url, Sandboxes.None);
+                // When I'm using await, it doesn't work, this is temporary solution
                 var openedDocument = await newBrowsingContext.OpenAsync(url);
                 return openedDocument;
             }

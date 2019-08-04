@@ -15,8 +15,7 @@ namespace Utils.Extensions
 
             builder
                 .RegisterInstance(BrowsingContext.New(configuration))
-                .As<IBrowsingContext>()
-                .SingleInstance();
+                .As<IBrowsingContext>();
 
             return builder;
         }

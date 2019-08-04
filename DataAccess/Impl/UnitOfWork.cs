@@ -8,11 +8,11 @@ namespace DataAccess.Impl
     public class UnitOfWork : IUnitOfWork
     {
 
-        public UnitOfWork(ImgwClimateMeteDataRepository imgwClimateMeteoDataRepository)
+        public UnitOfWork(IImgwClimateMeteoDataRepository imgwClimateMeteoDataRepository)
         {
             ImgwClimateMeteDataRepository = imgwClimateMeteoDataRepository;
         }
 
-        public ImgwClimateMeteDataRepository ImgwClimateMeteDataRepository { get; set; }
+        public IImgwClimateMeteoDataRepository ImgwClimateMeteDataRepository { get; set; }
     }
 }

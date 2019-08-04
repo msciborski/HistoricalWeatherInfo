@@ -12,8 +12,9 @@ namespace DataAccess
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<MongoClient>().AsSelf();
+            builder.RegisterType<MongoDbClient>().As<MongoDbClient>().SingleInstance();
             builder.RegisterType<ImgwClimateMeteDataRepository>()
+                .As<IImgwClimateMeteoDataRepository>()
                 .As<IRepository<ImgwClimateMeteoData>>();
 
             builder.RegisterType<UnitOfWork>()

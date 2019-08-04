@@ -24,13 +24,13 @@ namespace ScraperApp
             _downloader = downloader;
             _parser = parser;
         }
-        public async Task<IEnumerable<ImgwClimateMeteoData>> GetClimateMeteoData()
+        public async Task<IEnumerable<ImgwClimateMeteoData>> GetClimateMeteoDataAsync()
         {
             var climateMeteoDataList = new List<ImgwClimateMeteoData>();
             var meteoDataFileUrls = await _scraper.GetAllMeteoDataFileUrlsAsync();
             foreach (var meteoDataFileUrl in meteoDataFileUrls)
             {
-                climateMeteoDataList.AddRange(await GetClimateMeteoDataFromFiles(meteoDataFileUrl.Url, "k_m_d.*"));
+                climateMeteoDataList.AddRange(await GetClimateMeteoDataFromFilesAsync(meteoDataFileUrl.Url, "k_m_d.*"));
 
             }
 
@@ -42,7 +42,7 @@ namespace ScraperApp
             return _parser.GetMeteoData(file);
         }
 
-        private async Task<IEnumerable<ImgwClimateMeteoData>> GetClimateMeteoDataFromFiles(string url, string fileNamePattern)
+        private async Task<IEnumerable<ImgwClimateMeteoData>> GetClimateMeteoDataFromFilesAsync(string url, string fileNamePattern)
         {
             var climateMeteoDataList = new List<ImgwClimateMeteoData>();
             var zipedFiles = await _downloader.DownloadFile(url);
