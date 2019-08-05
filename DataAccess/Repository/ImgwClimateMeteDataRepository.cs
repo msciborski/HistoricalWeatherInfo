@@ -2,8 +2,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using DataAccess.Impl;
-using DataAccess.Repository.Interfaces;
-using MongoDB.Bson;
+using WeatherInfo.Interfaces;
 using WeatherInfo.Models;
 
 namespace DataAccess.Repository

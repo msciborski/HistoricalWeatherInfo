@@ -6,11 +6,14 @@
 
     <ItemGroup>
       <Folder Include="Impl" />
-      <Folder Include="Interfaces" />
     </ItemGroup>
 
     <ItemGroup>
       <PackageReference Include="Autofac" Version="4.9.3" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Utils\Utils.csproj" />
     </ItemGroup>
 
 </Project>

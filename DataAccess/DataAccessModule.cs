@@ -1,10 +1,5 @@
 using Autofac;
-using DataAccess.Impl;
-using DataAccess.Interfaces;
-using DataAccess.Repository;
-using DataAccess.Repository.Interfaces;
-using MongoDB.Driver;
-using WeatherInfo.Models;
+
 
 namespace DataAccess
 {
@@ -12,13 +7,13 @@ namespace DataAccess
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<MongoDbClient>().As<MongoDbClient>().SingleInstance();
-            builder.RegisterType<ImgwClimateMeteDataRepository>()
-                .As<IImgwClimateMeteoDataRepository>()
-                .As<IRepository<ImgwClimateMeteoData>>();
-
-            builder.RegisterType<UnitOfWork>()
-                .As<IUnitOfWork>();
+//            builder.RegisterType<MongoDbClient>().As<MongoDbClient>().SingleInstance();
+//            builder.RegisterType<ImgwClimateMeteDataRepository>()
+//                .As<IImgwClimateMeteoDataRepository>()
+//                .As<IRepository<ImgwClimateMeteoData>>();
+//
+//            builder.RegisterType<UnitOfWork>()
+//                .As<IUnitOfWork>();
             
             base.Load(builder);
         }

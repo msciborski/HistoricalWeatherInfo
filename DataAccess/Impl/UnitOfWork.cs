@@ -1,11 +1,9 @@
-using DataAccess.Interfaces;
-using DataAccess.Repository;
-using DataAccess.Repository.Interfaces;
-using WeatherInfo.Models;
+using WeatherInfo;
+using WeatherInfo.Interfaces;
 
 namespace DataAccess.Impl
 {
-    public class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IMeteoDataUnitOfWork
     {
 
         public UnitOfWork(IImgwClimateMeteoDataRepository imgwClimateMeteoDataRepository)

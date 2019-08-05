@@ -14,4 +14,9 @@
       <ProjectReference Include="..\WeatherInfo\WeatherInfo.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Interfaces" />
+      <Folder Include="Repository\Interfaces" />
+    </ItemGroup>
+
 </Project>

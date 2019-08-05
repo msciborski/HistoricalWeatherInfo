@@ -1,18 +1,15 @@
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using DataAccess.Interfaces;
 using WeatherInfo;
-using WeatherInfo.Models;
 
 namespace ScraperApp
 {
     public class App
     {
         private readonly IMeteoDataProvider _meteoDataProvider;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IMeteoDataUnitOfWork _unitOfWork;
 
-        public App(IMeteoDataProvider meteoDataProvider, IUnitOfWork unitOfWork)
+        public App(IMeteoDataProvider meteoDataProvider, IMeteoDataUnitOfWork unitOfWork)
         {
             _meteoDataProvider = meteoDataProvider;
             _unitOfWork = unitOfWork;

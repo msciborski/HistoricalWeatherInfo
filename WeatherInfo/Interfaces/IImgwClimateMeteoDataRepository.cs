@@ -1,6 +1,7 @@
+using Utils.Interfaces;
 using WeatherInfo.Models;
 
-namespace DataAccess.Repository.Interfaces
+namespace WeatherInfo.Interfaces
 {
     public interface IImgwClimateMeteoDataRepository : IRepository<ImgwClimateMeteoData>
     {
