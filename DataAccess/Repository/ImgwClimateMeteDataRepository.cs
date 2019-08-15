@@ -1,8 +1,8 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using DataAccess.Impl;
-using MongoDB.Bson;
 using MongoDB.Driver;
 using MongoDB.Driver.Linq;
 using WeatherInfo.Interfaces;
@@ -22,23 +22,22 @@ namespace DataAccess.Repository
         
         public async Task AddAsync(ImgwClimateMeteoData entity, CancellationToken cancellationToken = default)
         {
-            var database = _client.Client.GetDatabase("ImgwMeteoDataDatabase");
-            var collection = database.GetCollection<ImgwClimateMeteoData>(CollectionName);
-            await collection.InsertOneAsync(entity, cancellationToken);
+            await _client.ImgwClimateMeteoDatas.InsertOneAsync(entity, cancellationToken);
         }
 
         public async Task AddRangeAsync(IEnumerable<ImgwClimateMeteoData> entities, CancellationToken cancellationToken = default)
         {
-            var database = _client.Client.GetDatabase("ImgwMeteoDataDatabase");
-            var collection = database.GetCollection<ImgwClimateMeteoData>(CollectionName);
-            await collection.InsertManyAsync(entities, null, cancellationToken);
+            await _client.ImgwClimateMeteoDatas.InsertManyAsync(entities, null, cancellationToken);
         }
 
         public async Task<IEnumerable<ImgwClimateMeteoData>> GetMeteoDataBetweenYears(int startYear, int endYear, int pageSize = 100, int pageNumber = 0)
         {
-            var database = _client.Client.GetDatabase("ImgwMeteoDataDatabase");
-            var collection = database.GetCollection<ImgwClimateMeteoData>(CollectionName).AsQueryable();
-            var documentList = await collection.Where(c => c.Year >= startYear && c.Year <= endYear).Skip(pageSize * pageNumber).Take(pageSize).ToListAsync();
+            var documentList = await _client.ImgwClimateMeteoDatas
+                .AsQueryable()
+                .Where(c => c.Year >= startYear && c.Year <= endYear)
+                .Skip(pageSize * pageNumber)
+                .Take(pageSize)
+                .ToListAsync();
 
             return documentList;
         }
@@ -46,9 +45,13 @@ namespace DataAccess.Repository
         public async Task<IEnumerable<ImgwClimateMeteoData>> GetMeteoDataForStation(string stationCode,
             int pageSize = 100, int pageNumber = 0)
         {
-            var database = _client.Client.GetDatabase("ImgwMeteoDataDatabase");
-            var collection = database.GetCollection<ImgwClimateMeteoData>(CollectionName).AsQueryable();
-            var documentList = await collection.Where(c => c.StationCode.Equals(stationCode)).Skip(pageSize * pageNumber).Take(pageSize).ToListAsync();
+            var documentList = await _client.ImgwClimateMeteoDatas
+                .AsQueryable()
+                .Where(c => c.StationCode.Equals(stationCode))
+                .Skip(pageSize * pageNumber)
+                .Take(pageSize)
+                .ToListAsync();
+
             return documentList;    
         }
     }
