@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Michal\.Rider2019.1\config\scratches" t="IncludeRecursive" />
+    <e p="C:\Users\Michal\.Rider2019.1\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Michal\.Rider2019.1\system\resharper-host\local\Transient\ReSharperHost\v191\SolutionCaches\_HistoricalWeatherInfo.-1521221719.00" t="ExcludeRecursive" />
+    <e p="C:\Users\Michal\RiderProjects\HistoricalWeatherInfo" t="IncludeFlat">
+      <e p="DataAccess" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="DataAccess.csproj" t="IncludeRecursive" />
+        <e p="DataAccessModule.cs" t="Include" />
+        <e p="Impl" t="Include">
+          <e p="MongoDbClient.cs" t="Include" />
+          <e p="UnitOfWork.cs" t="Include" />
+        </e>
+        <e p="Interfaces" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="DataAccess.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Options" t="Include">
+          <e p="MongoDbSettings.cs" t="Include" />
+        </e>
+        <e p="Repository" t="Include">
+          <e p="ImgwClimateMeteDataRepository.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Downloader" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="DownladerModule.cs" t="Include" />
+        <e p="Downloader.csproj" t="IncludeRecursive" />
+        <e p="Impl" t="Include">
+          <e p="ImgwMeteoDataDownloader.cs" t="Include" />
+        </e>
+        <e p="Interfaces" t="Include">
+          <e p="IDownloader.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="Downloader.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="FileService" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="FileService.csproj" t="IncludeRecursive" />
+        <e p="FileServiceModule.cs" t="Include" />
+        <e p="Impl" t="Include">
+          <e p="FileService.cs" t="Include" />
+        </e>
+        <e p="Interfaces" t="Include">
+          <e p="IFileService.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="FileService.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="HistoricalWeatherInfo.sln" t="IncludeFlat" />
+      <e p="HistoricalWeatherInfoAPI" t="IncludeRecursive">
+        <e p="app.config" t="Include" />
+        <e p="appsettings.Development.json" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Controllers" t="Include">
+          <e p="ValuesController.cs" t="Include" />
+        </e>
+        <e p="HistoricalWeatherInfoAPI.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="HistoricalWeatherInfoAPI.AssemblyInfo.cs" t="Include" />
+              <e p="HistoricalWeatherInfoAPI.RazorAssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="launchSettings.json" t="Include" />
+        </e>
+        <e p="Startup.cs" t="Include" />
+        <e p="wwwroot" t="Include" />
+      </e>
+      <e p="Infrastructure" t="Include" />
+      <e p="Modules" t="Include" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Parser" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Converters" t="Include">
+          <e p="MeteoDataDecimalConverter.cs" t="Include" />
+          <e p="MeteoDataIntConverter.cs" t="Include" />
+        </e>
+        <e p="IMeteoDataParser.cs" t="Include" />
+        <e p="Impl" t="Include">
+          <e p="ClimateMeteoDataParserMapping.cs" t="Include" />
+          <e p="ImgwMeteoDataParser.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="Parser.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Parser.csproj" t="IncludeRecursive" />
+        <e p="ParserModule.cs" t="Include" />
+      </e>
+      <e p="Scraper" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Impl" t="Include">
+          <e p="ImgwMeteoFilesScraper.cs" t="Include" />
+          <e p="Scraper.cs" t="Include" />
+        </e>
+        <e p="Interfaces" t="Include">
+          <e p="IMeteoFilesScraper.cs" t="Include" />
+          <e p="IScraper.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="MeteoDataFileDirectory.cs" t="Include" />
+          <e p="MeteoDataFileUrl.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="Scraper.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Scraper.csproj" t="IncludeRecursive" />
+        <e p="ScraperModule.cs" t="Include" />
+      </e>
+      <e p="ScraperApp" t="IncludeRecursive">
+        <e p="App.cs" t="Include" />
+        <e p="appsettings.json" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="MeteoDataFromFileProvider.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="ScraperApp.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Program.cs" t="Include" />
+        <e p="ScraperApp.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="Utils" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Extensions" t="Include">
+          <e p="ContainerBuilderExtensions.cs" t="Include" />
+        </e>
+        <e p="Interfaces" t="Include">
+          <e p="IRepository.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Paths.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="Utils.csproj" t="IncludeRecursive" />
+      </e>
+      <e p="WeatherInfo" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Commands" t="Include" />
+        <e p="Handlers" t="Include">
+          <e p="GetMeteoDataForStationQueryHandler.cs" t="Include" />
+        </e>
+        <e p="IMeteoDataProvider.cs" t="Include" />
+        <e p="IMeteoDataUnitOfWork.cs" t="Include" />
+        <e p="Interfaces" t="Include">
+          <e p="IImgwClimateMeteoDataRepository.cs" t="Include" />
+        </e>
+        <e p="Models" t="Include">
+          <e p="ImgwClimateMeteoData.cs" t="Include" />
+        </e>
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp2.1" t="Include">
+              <e p="WeatherInfo.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Queries" t="Include">
+          <e p="GetMeteoDataForStationQuery.cs" t="Include" />
+          <e p="TestQuery.cs" t="Include" />
+        </e>
+        <e p="WeatherInfo.csproj" t="IncludeRecursive" />
+        <e p="WeatherInfoModule.cs" t="Include" />
+      </e>
+    </e>
+  </component>
+</project>

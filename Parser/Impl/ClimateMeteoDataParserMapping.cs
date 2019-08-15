@@ -12,8 +12,8 @@ namespace HistoricalWeatherInfo.Parser.Impl
         {
             MapProperty(0, x => x.StationCode);
             MapProperty(1, x => x.StationName);
-            MapProperty(2, x => x.Year);
-            MapProperty(3, x => x.Month);
+            MapProperty(2, x => x.Year, new Int32Converter());
+            MapProperty(3, x => x.Month, new Int32Converter());
             MapProperty(4, x => x.AbsoluteTempMax, new MeteoDataDecimalConverter());
             MapProperty(5, x => x.AbsoluteTempMaxStatus);
             MapProperty(6, x => x.AverageTempMax, new MeteoDataDecimalConverter());

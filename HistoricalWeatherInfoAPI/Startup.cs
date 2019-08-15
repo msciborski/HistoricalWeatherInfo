@@ -1,7 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using Autofac;
+using DataAccess;
+using DataAccess.Options;
+using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,6 +15,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using WeatherInfo;
+using Module = Autofac.Module;
 
 namespace HistoricalWeatherInfoAPI
 {
@@ -18,29 +25,40 @@ namespace HistoricalWeatherInfoAPI
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            
         }
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.Configure<MongoDbSettings>(Configuration.GetSection("MongoDbSettings"));
+            services.AddMediatR(GetAssemblies().ToArray());
+        }
+        
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            foreach (var module in GetModules())
+            {
+                builder.RegisterModule(module);
+            }
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public IEnumerable<Module> GetModules()
+        {
+            yield return new WeatherInfoModule();
+            yield return new DataAccessModule();
+        }
+
+        public IEnumerable<Assembly> GetAssemblies()
+        {
+            yield return typeof(WeatherInfoModule).GetTypeInfo().Assembly;
+        }
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-//            if (env.IsDevelopment())
-//            {
-//                app.UseDeveloperExceptionPage();
-//            }
-//            else
-//            {
-//                app.UseHsts();
-//            }
 
-//            app.UseHttpsRedirection();
             app.UseMvc();
         }
     }

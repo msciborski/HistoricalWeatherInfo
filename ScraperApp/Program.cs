@@ -4,8 +4,9 @@ using System.IO;
 using System.Threading.Tasks;
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using DataAccess;
+using DataAccess.Impl;
 using DataAccess.Options;
+using DataAccess.Repository;
 using Downloader;
 using Downloader.Impl;
 using Downloader.Interfaces;
@@ -15,6 +16,7 @@ using HistoricalWeatherInfo.Scraper;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using WeatherInfo;
+using WeatherInfo.Interfaces;
 using IConfiguration = Microsoft.Extensions.Configuration.IConfiguration;
 
 namespace ScraperApp
@@ -54,6 +56,16 @@ namespace ScraperApp
                 .As<IMeteoDataProvider>();
             builder.RegisterType<App>()
                 .AsSelf();
+            
+            builder.RegisterType<MongoDbClient>()
+                .As<MongoDbClient>()
+                .SingleInstance();
+
+            builder.RegisterType<ImgwClimateMeteDataRepository>()
+                .As<IImgwClimateMeteoDataRepository>();
+
+            builder.RegisterType<UnitOfWork>()
+                .As<IMeteoDataUnitOfWork>();
 
             RegisterModules(builder);
             
@@ -87,8 +99,6 @@ namespace ScraperApp
             yield return new DownladerModule();
             yield return new ParserModule();
             yield return new FileServiceModule();
-            yield return new DataAccessModule();
-            
         }
 
         private static void DisposeServices()

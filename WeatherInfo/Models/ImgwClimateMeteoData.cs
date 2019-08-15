@@ -1,13 +1,16 @@
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 using System;
 
 namespace WeatherInfo.Models
 {
     public class ImgwClimateMeteoData
     {
+        public BsonObjectId Id { get; set; }
         public string StationCode { get; set; }
         public string StationName { get; set; }
-        public string Year { get; set; }
-        public string Month { get; set; }
+        public int Year { get; set; }
+        public int Month { get; set; }
         public decimal AbsoluteTempMax { get; set; }
         public string AbsoluteTempMaxStatus { get; set; }
         public decimal AverageTempMax { get; set; }

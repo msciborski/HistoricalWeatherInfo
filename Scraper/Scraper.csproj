@@ -6,12 +6,12 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="AngleSharp" Version="0.12.1" />
       <PackageReference Include="Autofac" Version="4.9.2" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Utils\Utils.csproj" />
-      <ProjectReference Include="D:\anglesharp\AngleSharp\src\AngleSharp\AngleSharp.Core.csproj" />
     </ItemGroup>
 
 </Project>

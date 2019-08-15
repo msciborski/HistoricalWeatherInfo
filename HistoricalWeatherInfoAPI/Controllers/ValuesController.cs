@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using WeatherInfo.Queries;
 
 namespace HistoricalWeatherInfoAPI.Controllers
 {
@@ -10,11 +12,19 @@ namespace HistoricalWeatherInfoAPI.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly IMediator _mediator;
+
+        public ValuesController(IMediator mediator)
+        {
+            _mediator = mediator;
+        }
+        
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<IActionResult> Get()
         {
-            return new string[] {"value1", "value2"};
+            var result = await _mediator.Send(new GetMeteoDataBetweenYearsQuery { StartYear = 1952, EndYear = 1953});
+            return Ok(result);
         }
 
         // GET api/values/5
